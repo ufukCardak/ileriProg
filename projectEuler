@@ -1,0 +1,144 @@
+                                                  Project euler
+                                                  
+1-) Problem 8 (Largest product in a series)
+
+ 
+	Verdiği sayı dizisindeki art arda 13 tane rakamın en yüksek çarpımını soruyor
+-->İlk önce dizi değişkenine aktarıyoruz,
+-->Dizi değişkenindeki rakamları tek tek almak için index değişkenini kullanıyoruz,
+-->Sonra bu dizi değişkenindeki rakamlarını tek tek çarpıyoruz ve bu çarpımlarını hesapla değişkenine aktarıyoruz,
+-->Hesapla değişkeninin değeri max değerinden büyük ise max değerine hesapla değerini atıyoruz ve en büyük çarpımı buluyoruz
+
+var dizi =
+"7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428483600823257530420752963450";
+var index = 0;
+var max = 0;
+while(index!=988){
+    var hesapla = parseInt(dizi[index])*parseInt(dizi[index+1])*parseInt(dizi[index+2])*parseInt(dizi[index+3])*parseInt(dizi[index+4])*parseInt(dizi[index+5])*parseInt(dizi[index+6])*parseInt(dizi[index+7])*parseInt(dizi[index+8])*parseInt(dizi[index+9])*parseInt(dizi[index+10])*parseInt(dizi[index+11])*parseInt(dizi[index+12]);
+    if( hesapla > max){
+        max = hesapla;
+    }
+    index++;
+}
+ 
+2-) Problem 48( Self powers)
+
+Bizde bu serideki toplamın son 10 basamağını istiyor
+-->1 den 1000 e kadar olan sayıları carpimUs fonksiyonuna gönderiyoruz
+-->carpimUs fonksiyonunda us değişkeni 0 olana kadar alt değişkenindeki sayı o kadar çarpılıyor
+-->sonra bu sayının modunu alıp topluyoruz
+-->son 10 rakamını almak için tekrar mod alıyoruz ve son 10 basamağını buluyoruz
+function carpimUs(taban,us){
+	var carpim = 1;
+	while(us > 0){
+		carpim = (carpim * taban) % 10000000000;
+		us--;
+}
+	return carpim;
+}
+var toplam = 0;
+for(var n = 1; n <= 1000; n++){
+	toplam = (toplam + carpimUs(n,n)) % 10000000000;
+}
+console.log(toplam);
+
+3-) Problem 18(Maximum path sum I)
+ 
+Yukarıdaki şekilde seçilen alanların en yüksek toplamını soruyor
+-->İlk önce verdiği sayıları diziye aktarıyoruz,
+-->Maksimum toplam sayıyı bulmak için başka bir dizi oluşturuyoruz ve toplanacak sayıları bu diziye aktarıyoruz
+-->Toplamak için diziye aktarılan sayıları topluyoruz ve sonucu göstermek için bir değişkene aktarıyoruz böylelikle maksimum toplam sayıyı buluyoruz
+
+var triangle = [
+    [75],
+    [95, 64],
+    [17, 47, 82],
+    [18, 35, 87, 10],
+    [20, 04, 82, 47, 65],
+    [19, 01, 23, 75, 03, 34],
+    [88, 02, 77, 73, 07, 63, 67],
+    [99, 65, 04, 28, 06, 16, 70, 92],
+    [41, 41, 26, 56, 83, 40, 80, 70, 33],
+    [41, 48, 72, 33, 47, 32, 37, 16, 94, 29],
+    [53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14],
+    [70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57],
+    [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
+    [63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
+    [04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23]
+    ];
+
+var sumOfMaxRoutes = [];
+var getSumOfMaxRoute = function(startingRow, startingCol) {
+    sumOfMaxRoutes[startingRow] = sumOfMaxRoutes[startingRow] || [];
+    if (sumOfMaxRoutes[startingRow][startingCol]) {
+        return sumOfMaxRoutes[startingRow][startingCol];
+    }
+    var sum = triangle[startingRow][startingCol];
+    if (startingRow == triangle.length - 1) {
+        return sum;
+    }
+    var leftPath = getSumOfMaxRoute(startingRow + 1, startingCol);
+    var rightPath = 0;
+    if (startingCol < triangle[startingRow+1].length - 1) {
+        rightPath = getSumOfMaxRoute(startingRow + 1, startingCol + 1);
+    }
+    sum += leftPath > rightPath ? leftPath : rightPath;
+    sumOfMaxRoutes[startingRow][startingCol] = sum;
+    return sum;
+}
+console.log(getSumOfMaxRoute(0, 0));
+
+4-) Problem 38(Pandigital multiples)
+ 
+var panDigitals = [];
+outerloop:
+for(var number = 9999; number > 0; number--){
+    var numString = '' + number;
+    var multiplier = 1;
+    while(numString.length < 9){
+        multiplier++;
+        numString += (number * multiplier);
+    }
+    if(numString.length == 9){
+        for(var digit = 1; digit < 10; digit++){
+            if(numString.indexOf('' + digit) == -1){
+                continue outerloop;
+            }
+        }
+        panDigitals.push(numString);
+    }
+}
+panDigitals.sort();
+console.log(panDigitals);
+console.log(panDigitals[panDigitals.length-1]);
+
+5-) Problem 28(Number spiral diagonals)
+ 
+Yukarıda 5x5 lik grid in köşegenlerdeki sayıların toplamını soruyor
+-->Fonskiyon oluşturup grid in boyutunu gönderiyoruz,
+-->grid in maximum sayısını buluyoruz ve maxSayi değişkenine aktarıyoruz,
+-->sayi,artis ve artisSayisi değişkenlerini tanımlıyoruz,
+-->for döngüsü içerisinde maxSayi değişkenine kadar devam ettiriyoruz,
+-->döngü içinde sayi değişkenini i kadar artırıyoruz,
+-->i değişkenini de artis değişkeni kadar artiriyoruz,
+-->artisSayisini 1 artiryim 4 e göre mod alıyoruz,
+-->artisSayisinin değeri 0 a eşitse artis değişkenini 2 artırıyoruz ve sayi değerini gönderiyoruz
+
+var gridToplam = function(grid){
+    var maxSayi = grid * grid;
+    var sayi = 0;
+    var artis = 1;
+    var artisSayisi = 0;
+    for(var i = 1; i <= maxSayi; i++){
+        sayi += i;
+        i += artis;
+        artisSayisi = (artisSayisi + 1) % 4;
+        if(artisSayisi == 0){
+            artis += 2;
+        }
+    }
+    return sayi;
+}
+console.log(gridToplam(1001));
+
+
