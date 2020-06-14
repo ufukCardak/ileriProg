@@ -2,13 +2,6 @@
                                                   
 1-) Problem 8 (Largest product in a series)
 
- 
-	Verdiği sayı dizisindeki art arda 13 tane rakamın en yüksek çarpımını soruyor
--->İlk önce dizi değişkenine aktarıyoruz,
--->Dizi değişkenindeki rakamları tek tek almak için index değişkenini kullanıyoruz,
--->Sonra bu dizi değişkenindeki rakamlarını tek tek çarpıyoruz ve bu çarpımlarını hesapla değişkenine aktarıyoruz,
--->Hesapla değişkeninin değeri max değerinden büyük ise max değerine hesapla değerini atıyoruz ve en büyük çarpımı buluyoruz
-
 var dizi =
 "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428483600823257530420752963450";
 var index = 0;
@@ -23,11 +16,6 @@ while(index!=988){
  
 2-) Problem 48( Self powers)
 
-Bizde bu serideki toplamın son 10 basamağını istiyor
--->1 den 1000 e kadar olan sayıları carpimUs fonksiyonuna gönderiyoruz
--->carpimUs fonksiyonunda us değişkeni 0 olana kadar alt değişkenindeki sayı o kadar çarpılıyor
--->sonra bu sayının modunu alıp topluyoruz
--->son 10 rakamını almak için tekrar mod alıyoruz ve son 10 basamağını buluyoruz
 function carpimUs(taban,us){
 	var carpim = 1;
 	while(us > 0){
@@ -43,11 +31,6 @@ for(var n = 1; n <= 1000; n++){
 console.log(toplam);
 
 3-) Problem 18(Maximum path sum I)
- 
-Yukarıdaki şekilde seçilen alanların en yüksek toplamını soruyor
--->İlk önce verdiği sayıları diziye aktarıyoruz,
--->Maksimum toplam sayıyı bulmak için başka bir dizi oluşturuyoruz ve toplanacak sayıları bu diziye aktarıyoruz
--->Toplamak için diziye aktarılan sayıları topluyoruz ve sonucu göstermek için bir değişkene aktarıyoruz böylelikle maksimum toplam sayıyı buluyoruz
 
 var triangle = [
     [75],
@@ -113,16 +96,6 @@ console.log(panDigitals);
 console.log(panDigitals[panDigitals.length-1]);
 
 5-) Problem 28(Number spiral diagonals)
- 
-Yukarıda 5x5 lik grid in köşegenlerdeki sayıların toplamını soruyor
--->Fonskiyon oluşturup grid in boyutunu gönderiyoruz,
--->grid in maximum sayısını buluyoruz ve maxSayi değişkenine aktarıyoruz,
--->sayi,artis ve artisSayisi değişkenlerini tanımlıyoruz,
--->for döngüsü içerisinde maxSayi değişkenine kadar devam ettiriyoruz,
--->döngü içinde sayi değişkenini i kadar artırıyoruz,
--->i değişkenini de artis değişkeni kadar artiriyoruz,
--->artisSayisini 1 artiryim 4 e göre mod alıyoruz,
--->artisSayisinin değeri 0 a eşitse artis değişkenini 2 artırıyoruz ve sayi değerini gönderiyoruz
 
 var gridToplam = function(grid){
     var maxSayi = grid * grid;
@@ -140,5 +113,3 @@ var gridToplam = function(grid){
     return sayi;
 }
 console.log(gridToplam(1001));
-
-
